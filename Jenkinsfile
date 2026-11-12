@@ -10,13 +10,15 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
-  stage('Build & Test') {
-  steps {
-    dir('backend') {
-      sh 'mvn -B clean verify'
+  stages {
+    stage('Build & Test') {
+      steps {
+        dir('backend') {
+          sh 'mvn -B clean verify'
+        }
+      }
     }
   }
-}
 
   post {
     always {
